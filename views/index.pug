@@ -1,0 +1,16 @@
+doctype html
+html
+    head
+        title Start here app
+    body
+        h1 Adventure App
+        form(action = '/run', method = "POST")
+            div
+                label(for = "login") login:
+                input(name = "login")
+            br
+            div
+                label(for = "pass") password:
+                input(name = "pass")
+            br
+            button(type = "submit") enter
