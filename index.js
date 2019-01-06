@@ -26,6 +26,18 @@ app.get('/', function(req, res) {
     res.render('index');
 });
 
+app.get('/char', function(req, res) {
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("mydb");
+        dbo.collection("chars").findOne({}, {projection:{_id:0}}, function(err, result) {
+            if (err) throw err;
+            res.render('char', {result:result});
+            db.close();
+        });
+    });
+});
+
 app.post('/run', function(req, res) {
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
@@ -38,7 +50,6 @@ app.post('/run', function(req, res) {
         });
     });
     //res.send('You sent ' + req.body.login + ' and ' + req.body.pass);
-    //res.render('form', {result:result});
 });
 
 app.listen(3000);

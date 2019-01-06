@@ -1,0 +1,12 @@
+extends page.pug
+
+block content
+    p Character modify here
+    p= result.name
+    each person, index in result
+        form
+            p=index
+            input(type='text', value=person)
+    br
+    // add disabled='' to input to make field uneditable
+    input(action='update', type='button', value='submit')
